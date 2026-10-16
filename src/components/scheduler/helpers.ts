@@ -1,15 +1,53 @@
-import { SchedulingAlgorithm } from "@/engine/scheduler";
+import { Process, SchedulingAlgorithm } from "@/engine/scheduler";
 import { PlaySpeed, ProcessDraftRow } from "./types";
 
 export function isControlsReady(
   algorithm: SchedulingAlgorithm | "",
-  processesCount: number,
+  processes: Process[],
   quantum: number,
   agingInterval: number
 ): boolean {
-  if (!algorithm || processesCount === 0) {
+  if (!algorithm || !processes || processes.length === 0) {
     return false;
   }
+
+  const seenIds = new Set<string>();
+  for (const p of processes) {
+    if (!p.ProcessID || !p.ProcessID.trim() || seenIds.has(p.ProcessID.trim())) {
+      return false;
+    }
+    seenIds.add(p.ProcessID.trim());
+
+    if (
+      typeof p.BurstTime !== "number" ||
+      isNaN(p.BurstTime) ||
+      !Number.isInteger(p.BurstTime) ||
+      p.BurstTime < 1
+    ) {
+      return false;
+    }
+
+    if (
+      typeof p.ArrivalTime !== "number" ||
+      isNaN(p.ArrivalTime) ||
+      !Number.isInteger(p.ArrivalTime) ||
+      p.ArrivalTime < 0
+    ) {
+      return false;
+    }
+
+    if (algorithm === "PRIORITY" && p.Priority !== undefined) {
+      if (
+        typeof p.Priority !== "number" ||
+        isNaN(p.Priority) ||
+        !Number.isInteger(p.Priority) ||
+        p.Priority < 0
+      ) {
+        return false;
+      }
+    }
+  }
+
   if (algorithm === "ROUND_ROBIN" && (isNaN(quantum) || quantum < 1)) {
     return false;
   }
@@ -99,12 +137,18 @@ export function validateAllDraftRows(
   return { hasErrors, rowErrors };
 }
 
-export function formatMetric(value: number | null | undefined, precision = 4): string {
+export function formatMetric(value: number | null | undefined, precision = 2): string {
   if (value === null || value === undefined || isNaN(value)) {
     return "—";
   }
+  if (Number.isInteger(value)) {
+    return value.toFixed(1);
+  }
   const factor = Math.pow(10, precision);
   const rounded = Math.round(value * factor) / factor;
+  if (Number.isInteger(rounded)) {
+    return rounded.toFixed(1);
+  }
   return rounded.toString();
 }
 

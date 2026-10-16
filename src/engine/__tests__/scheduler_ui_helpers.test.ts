@@ -10,29 +10,46 @@ import { ProcessDraftRow } from "../../components/scheduler/types";
 
 describe("Scheduler UI Helpers", () => {
   describe("isControlsReady", () => {
-    it("returns false if algorithm is empty or processesCount is 0", () => {
-      expect(isControlsReady("", 1, 2, 5)).toBe(false);
-      expect(isControlsReady("SJF_NONPREEMPTIVE", 0, 2, 5)).toBe(false);
+    const validProcesses = [{ ProcessID: "P1", ArrivalTime: 0, BurstTime: 5 }];
+
+    it("returns false if algorithm is empty or processes list is empty", () => {
+      expect(isControlsReady("", validProcesses, 2, 5)).toBe(false);
+      expect(isControlsReady("SJF_NONPREEMPTIVE", [], 2, 5)).toBe(false);
+    });
+
+    it("stays disabled when any process in the list is invalid", () => {
+      const invalidBurst = [{ ProcessID: "P1", ArrivalTime: 0, BurstTime: 0 }];
+      expect(isControlsReady("SJF_NONPREEMPTIVE", invalidBurst, 2, 5)).toBe(false);
+
+      const invalidArrival = [{ ProcessID: "P1", ArrivalTime: -1, BurstTime: 3 }];
+      expect(isControlsReady("SJF_NONPREEMPTIVE", invalidArrival, 2, 5)).toBe(false);
+
+      const duplicateIds = [
+        { ProcessID: "P1", ArrivalTime: 0, BurstTime: 3 },
+        { ProcessID: "P1", ArrivalTime: 1, BurstTime: 2 },
+      ];
+      expect(isControlsReady("SJF_NONPREEMPTIVE", duplicateIds, 2, 5)).toBe(false);
     });
 
     it("requires quantum >= 1 for Round Robin", () => {
-      expect(isControlsReady("ROUND_ROBIN", 2, 0, 5)).toBe(false);
-      expect(isControlsReady("ROUND_ROBIN", 2, -1, 5)).toBe(false);
-      expect(isControlsReady("ROUND_ROBIN", 2, NaN, 5)).toBe(false);
-      expect(isControlsReady("ROUND_ROBIN", 2, 2, 5)).toBe(true);
+      expect(isControlsReady("ROUND_ROBIN", validProcesses, 0, 5)).toBe(false);
+      expect(isControlsReady("ROUND_ROBIN", validProcesses, -1, 5)).toBe(false);
+      expect(isControlsReady("ROUND_ROBIN", validProcesses, NaN, 5)).toBe(false);
+      expect(isControlsReady("ROUND_ROBIN", validProcesses, 2, 5)).toBe(true);
     });
 
     it("requires agingInterval >= 1 for Priority", () => {
-      expect(isControlsReady("PRIORITY", 2, 2, 0)).toBe(false);
-      expect(isControlsReady("PRIORITY", 2, 2, -3)).toBe(false);
-      expect(isControlsReady("PRIORITY", 2, 2, 4)).toBe(true);
+      expect(isControlsReady("PRIORITY", validProcesses, 2, 0)).toBe(false);
+      expect(isControlsReady("PRIORITY", validProcesses, 2, -3)).toBe(false);
+      expect(isControlsReady("PRIORITY", validProcesses, 2, 4)).toBe(true);
     });
 
-    it("enables controls for SJF algorithms with at least 1 process", () => {
-      expect(isControlsReady("SJF_NONPREEMPTIVE", 1, 1, 1)).toBe(true);
-      expect(isControlsReady("SJF_PREEMPTIVE", 3, 1, 1)).toBe(true);
+    it("enables controls for SJF algorithms with valid processes", () => {
+      expect(isControlsReady("SJF_NONPREEMPTIVE", validProcesses, 1, 1)).toBe(true);
+      expect(isControlsReady("SJF_PREEMPTIVE", validProcesses, 1, 1)).toBe(true);
     });
   });
+
 
   describe("validateDraftRow", () => {
     it("flags burst < 1 with exact spec error 'Must be 1 or more.'", () => {
@@ -101,9 +118,12 @@ describe("Scheduler UI Helpers", () => {
       expect(formatMetric(NaN)).toBe("—");
     });
 
-    it("formats numbers accurately", () => {
+    it("formats numbers accurately with decimal places", () => {
+      expect(formatMetric(3)).toBe("3.0");
+      expect(formatMetric(7)).toBe("7.0");
       expect(formatMetric(0.25)).toBe("0.25");
-      expect(formatMetric(3.66666666)).toBe("3.6667");
+      expect(formatMetric(3.25)).toBe("3.25");
+      expect(formatMetric(3.66666666)).toBe("3.67");
     });
   });
 

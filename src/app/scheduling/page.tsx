@@ -35,8 +35,8 @@ export default function SchedulingPage() {
 
   // Controls readiness check
   const isReady = useMemo(() => {
-    return isControlsReady(algorithm, processes.length, quantum, agingInterval);
-  }, [algorithm, processes.length, quantum, agingInterval]);
+    return isControlsReady(algorithm, processes, quantum, agingInterval);
+  }, [algorithm, processes, quantum, agingInterval]);
 
   // Compute total ticks
   const maxTicks = useMemo(() => {
@@ -280,10 +280,7 @@ export default function SchedulingPage() {
           </div>
 
           {/* Clock Display */}
-          <div className="flex items-center gap-2 bg-surface border border-hairline px-3 py-1">
-            <span className="text-[14px] font-medium text-ink-muted">
-              Clock:
-            </span>
+          <div className="flex items-center bg-surface border border-hairline px-3 py-1">
             <span
               id="clock-vector-display"
               className="text-[14px] font-semibold text-accent tabular-nums"
