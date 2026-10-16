@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-container":"#98a4c9","background":"#fcf9f8","primary-fixed":"#dae2ff","on-secondary-fixed-variant":"#3d4757","secondary-fixed":"#d9e3f7","inverse-surface":"#313030","tertiary":"#312300","surface-tint":"#525e7f","surface-dim":"#dcd9d9","tertiary-container":"#4a380c","outline-variant":"#c6c6ce","on-secondary-fixed":"#121c2a","inverse-on-surface":"#f3f0ef","surface-container-highest":"#e5e2e1","secondary":"#555f6f","on-tertiary-fixed":"#261a00","on-primary-fixed-variant":"#3a4666","on-surface-variant":"#45464e","on-surface":"#1c1b1b","primary-container":"#2e3a59","surface-container-lowest":"#ffffff","secondary-fixed-dim":"#bdc7da","primary":"#182442","outline":"#75777e","tertiary-fixed":"#fddfa4","surface-bright":"#fcf9f8","error-container":"#ffdad6","secondary-container":"#d9e3f7","on-primary":"#ffffff","inverse-primary":"#bac6ec","on-tertiary-fixed-variant":"#574417","on-tertiary":"#ffffff","surface-container-low":"#f6f3f2","on-secondary":"#ffffff","on-tertiary-container":"#bca26c","surface-container":"#f0eded","surface":"#fcf9f8","surface-container-high":"#eae7e7","on-background":"#1c1b1b","on-error":"#ffffff","tertiary-fixed-dim":"#dfc38b","error":"#ba1a1a","surface-variant":"#e5e2e1","on-primary-fixed":"#0d1a38","on-error-container":"#93000a","primary-fixed-dim":"#bac6ec","on-secondary-container":"#5b6575"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-lg":"1rem","margin":"1rem","space-xl":"1.5rem","space-xs":"0.25rem","space-md":"0.75rem","space-sm":"0.5rem"},"fontFamily":{"label-mono":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"label-lg":["Inter"],"body-lg":["Inter"],"headline-lg":["Inter"],"label-md":["Inter"],"headline-md":["Inter"]},"fontSize":{"label-mono":["14px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"label-lg":["15px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"500"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"18px","letterSpacing":"0.015em","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-container"><header class="fixed top-0 left-0 right-0 h-11 bg-surface-container-lowest border-b border-surface-container-highest z-50 flex items-center justify-between px-space-md"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-primary text-[18px]">terminal</span><span class="font-label-mono text-label-mono tracking-wider font-semibold text-primary uppercase">OS SIMULATOR</span></div><div class="h-4 w-px bg-surface-container-highest"></div><nav class="flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-medium"><a aria-current="page" class="px-space-md py-1 border border-surface-container-highest transition-colors bg-primary-container text-on-primary font-medium" data-path="cpu-scheduling" href="#">CPU Scheduling</a><a class="font-label-md text-label-md px-space-md py-1 border border-surface-container-highest text-on-surface-variant hover:text-on-surface transition-colors" data-path="deadlock-avoidance" href="#">Deadlock Avoidance</a></nav></div><div class="flex items-center gap-space-md"></div></header><aside class="fixed left-0 top-11 bottom-0 w-[240px] bg-surface-container-low border-r border-surface-container-highest z-40 flex flex-col justify-between overflow-y-auto"><div class="p-space-md"><div class="pb-space-sm mb-space-sm border-b border-surface-container-highest flex items-center justify-between"><span class="font-label-mono text-label-mono text-outline uppercase font-semibold">Workstation Nav</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-medium border-primary"><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 bg-primary-container text-on-primary font-medium border-primary" data-path="cpu-scheduling" href="#"><span class="font-label-md text-label-md">Core Dispatcher</span><span class="font-label-mono text-label-mono text-outline">01</span></a><a class="flex items-center justify-between px-space-sm py-1.5 border border-surface-container-highest bg-surface-container-lowest text-on-surface-variant hover:text-on-surface" data-path="deadlock-avoidance" href="#"><span class="font-label-md text-label-md">Resource Matrix</span><span class="font-label-mono text-label-mono text-outline">02</span></a><a class="flex items-center justify-between px-space-sm py-1.5 border border-surface-container-highest bg-surface-container-lowest text-on-surface-variant hover:text-on-surface" data-path="memory-management" href="#"><span class="font-label-md text-label-md">Frame Allocator</span><span class="font-label-mono text-label-mono text-outline">03</span></a><a class="flex items-center justify-between px-space-sm py-1.5 border border-surface-container-highest bg-surface-container-lowest text-on-surface-variant hover:text-on-surface" data-path="storage-io" href="#"><span class="font-label-md text-label-md">Disk Arm Timeline</span><span class="font-label-mono text-label-mono text-outline">04</span></a></nav></div></aside><div class="pl-[240px]"><main class="w-full pt-11 bg-background min-h-screen"><div class="flex flex-col w-full relative min-h-[calc(100vh-44px)] overflow-hidden font-body-md text-on-surface">
+<!-- Background CPU Scheduling Canvas (Dimmed) -->
+<div aria-hidden="true" class="w-full p-space-lg select-none opacity-40 pointer-events-none">
+<!-- Header Metrics Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mb-space-md"><div class="bg-surface-container-lowest p-space-md border border-surface-container-highest"><span class="block font-label-mono text-label-mono text-outline uppercase">Active Algorithm</span><span class="block font-headline-md text-headline-md text-on-surface mt-1">No algorithm selected</span></div><div class="bg-surface-container-lowest p-space-md border border-surface-container-highest"><span class="block font-label-mono text-label-mono text-outline uppercase">Queue Status</span><span class="block font-headline-md text-headline-md text-on-surface mt-1">Uninitialized</span></div></div>
+<!-- Timeline & Gantt Chart Area -->
+<div class="bg-surface-container-lowest border border-surface-container-highest p-space-md mb-space-md">
+<div class="flex justify-between items-center mb-space-sm border-b border-surface-container-highest pb-space-sm">
+<span class="font-label-mono text-label-mono text-outline uppercase font-semibold">Execution Timeline [0ms - 0ms]</span>
+<span class="font-label-mono text-label-mono text-outline">Tick: 0ms</span>
+</div>
+<div class="h-10 w-full flex border border-surface-container-highest bg-surface-container-low relative">
+<div class="h-full bg-surface-container-highest text-outline flex items-center justify-center font-label-mono text-label-mono w-full">IDLE</div>
+</div>
+</div>
+<!-- Process Table Readout in Background -->
+<div class="bg-surface-container-lowest border border-surface-container-highest">
+<div class="px-space-md py-space-sm border-b border-surface-container-highest bg-surface-container-low flex justify-between">
+<span class="font-label-mono text-label-mono text-outline uppercase font-semibold">Active Dispatcher Matrix</span>
+<span class="font-label-mono text-label-mono text-outline">0 items queued</span>
+</div>
+<div class="p-space-md">
+<div class="h-8 bg-surface-container-low mb-1 border border-surface-container-highest"></div>
+<div class="h-8 bg-surface-container-lowest mb-1 border border-surface-container-highest"></div>
+<div class="h-8 bg-surface-container-low border border-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<!-- Translucent Backdrop -->
+<div class="absolute inset-0 bg-[#FAFAF7]/75 transition-opacity" id="drawer-backdrop"></div>
+<!-- Process Editor Drawer (420px Wide, Fixed Right) -->
+<aside aria-labelledby="drawer-title" aria-modal="true" class="absolute top-0 right-0 bottom-0 w-[420px] bg-[#FAFAF7] border-l border-[#E5E5E0] z-30 flex flex-col justify-between select-none" id="process-drawer" role="dialog">
+<!-- Top Bar & Main Content -->
+<div class="flex flex-col flex-1 overflow-y-auto">
+<!-- Top Bar: Title on left, Close button on right -->
+<div class="h-14 px-space-md border-b border-[#E5E5E0] flex items-center justify-between shrink-0">
+<h2 class="font-headline-md text-headline-md text-[#1A1A1A] font-semibold" id="drawer-title">Processes</h2>
+<button aria-label="Close process editor" class="w-8 h-8 flex items-center justify-center text-[#1A1A1A] hover:bg-surface-container-highest transition-colors rounded-none" id="close-drawer-btn" type="button">
+<span class="font-body-lg text-[22px] leading-none">×</span>
+</button>
+</div>
+<!-- Process Data Table Area -->
+<div class="p-space-md">
+<table class="w-full border-collapse text-left" id="process-table">
+<thead>
+<tr class="border-b border-[#E5E5E0]">
+<th class="pb-2 font-label-md text-label-md font-medium text-[#6B6B6B] text-left" scope="col">ProcessID</th>
+<th class="pb-2 font-label-md text-label-md font-medium text-[#6B6B6B] text-right" scope="col">Arrival</th>
+<th class="pb-2 font-label-md text-label-md font-medium text-[#6B6B6B] text-right" scope="col">Burst</th>
+<th class="pb-2 font-label-md text-label-md font-medium text-[#6B6B6B] text-right priority-col hidden" scope="col">Priority</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E5E5E0]" id="process-table-body"><tr><td class="py-2.5 font-label-mono text-label-mono text-[#1A1A1A]">P1</td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A]"><input class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" placeholder="0" type="text" value="0"/></td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A]"><div class="flex flex-col items-end"><input class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A] burst-input" placeholder="1" type="text" value="1"/></div></td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A] priority-col hidden"><input class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" placeholder="1" type="text" value="1"/></td></tr><tr><td class="py-2.5 align-top font-label-mono text-label-mono text-[#1A1A1A]">P2</td><td class="py-2.5 align-top text-right font-label-mono text-label-mono text-[#1A1A1A]"><input class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" placeholder="0" type="text" value="0"/></td><td class="py-2.5 align-top text-right font-label-mono text-label-mono text-[#1A1A1A]"><div class="flex flex-col items-end"><input aria-describedby="p2-burst-error" aria-invalid="true" class="w-14 text-right bg-transparent border-b border-[#2E3A59] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A] burst-input" placeholder="0" type="text" value="0"/><span class="font-label-mono text-[11px] leading-tight text-[#2E3A59] mt-1 whitespace-nowrap" id="p2-burst-error">Must be 1 or more</span></div></td><td class="py-2.5 align-top text-right font-label-mono text-label-mono text-[#1A1A1A] priority-col hidden"><input class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" placeholder="1" type="text" value="1"/></td></tr><tr class="opacity-60"><td class="py-2.5 font-label-mono text-label-mono text-[#6B6B6B]">—</td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#6B6B6B]">—</td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#6B6B6B]">—</td><td class="py-2.5 text-right font-label-mono text-label-mono text-[#6B6B6B] priority-col hidden">—</td></tr></tbody>
+</table>
+<!-- Add Process Action Button -->
+<div class="mt-space-sm pt-space-xs flex items-center justify-between">
+<button class="font-label-md text-label-md text-[#2E3A59] hover:underline focus:outline-none inline-flex items-center" id="btn-add-process" type="button">
+            + Add process
+          </button>
+<span class="font-label-mono text-[11px] text-[#6B6B6B] italic">Priority column appears only for Priority algorithm</span>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-md border-t border-[#E5E5E0] bg-[#FAFAF7] flex items-center justify-end gap-space-md shrink-0">
+<button class="font-label-md text-label-md text-[#6B6B6B] hover:text-[#1A1A1A] px-space-md py-1.5 focus:outline-none transition-colors" id="cancel-btn" type="button">
+Cancel
+</button>
+<button class="font-label-md text-label-md bg-[#2E3A59] text-white hover:bg-[#182442] px-space-lg py-1.5 transition-colors focus:outline-none" id="apply-btn" type="button">
+Apply
+</button>
+</div>
+</aside>
+<script>
+    (function () {
+      const drawer = document.getElementById('process-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const closeBtn = document.getElementById('close-drawer-btn');
+      const cancelBtn = document.getElementById('cancel-btn');
+      const applyBtn = document.getElementById('apply-btn');
+      const addBtn = document.getElementById('btn-add-process');
+      const tbody = document.getElementById('process-table-body');
+
+      let processIndex = 3;
+
+      function closeDrawer() {
+        if (drawer) drawer.style.display = 'none';
+        if (backdrop) backdrop.style.display = 'none';
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeDrawer);
+
+      if (applyBtn) {
+        applyBtn.addEventListener('click', function () {
+          const invalidInputs = drawer ? drawer.querySelectorAll('input[aria-invalid="true"]') : [];
+          if (invalidInputs.length > 0) {
+            invalidInputs[0].focus();
+            return;
+          }
+          closeDrawer();
+        });
+      }
+
+      if (addBtn && tbody) {
+        addBtn.addEventListener('click', function () {
+          const emptyRow = tbody.querySelector('tr.opacity-60');
+          const newRow = document.createElement('tr');
+          newRow.innerHTML = `
+            <td class="py-2.5 font-label-mono text-label-mono text-[#1A1A1A]">P${processIndex}</td>
+            <td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A]">
+              <input type="text" value="0" class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" />
+            </td>
+            <td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A]">
+              <div class="flex flex-col items-end">
+                <input type="text" value="1" class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A] burst-input" />
+              </div>
+            </td>
+            <td class="py-2.5 text-right font-label-mono text-label-mono text-[#1A1A1A] priority-col hidden">
+              <input type="text" value="1" class="w-14 text-right bg-transparent border-b border-[#E5E5E0] focus:border-[#2E3A59] focus:outline-none font-label-mono text-label-mono text-[#1A1A1A]" />
+            </td>
+          `;
+          processIndex++;
+          if (emptyRow) {
+            tbody.insertBefore(newRow, emptyRow);
+          } else {
+            tbody.appendChild(newRow);
+          }
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>
