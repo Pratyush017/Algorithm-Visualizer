@@ -246,6 +246,28 @@ describe("CPU Scheduling Engine", () => {
     expect(res.throughput).toBeCloseTo(3 / 9, 4);
   });
 
+  it("admits newly arriving processes into ready queue before re-queueing quantum-expired process at the same tick", () => {
+    // P1 arrives at t=0 with Burst 4.
+    // P2 arrives at t=2 with Burst 2.
+    // Quantum = 2.
+    // At t=2, P1's quantum expires (remaining 2) at the same tick P2 arrives.
+    // Rule: P2 is admitted first, then P1 is re-queued. Ready queue: [P2, P1].
+    // P2 executes [2, 4), finishes at t=4.
+    // P1 executes [4, 6), finishes at t=6.
+    const processes: Process[] = [
+      { ProcessID: "P1", ArrivalTime: 0, BurstTime: 4 },
+      { ProcessID: "P2", ArrivalTime: 2, BurstTime: 2 },
+    ];
+    const res = simulate(processes, "ROUND_ROBIN", { quantum: 2 });
+    expect(res.success).toBe(true);
+    if (!res.success) return;
+    expect(res.segments).toEqual([
+      { processId: "P1", start: 0, end: 2 },
+      { processId: "P2", start: 2, end: 4 },
+      { processId: "P1", start: 4, end: 6 },
+    ]);
+  });
+
   /*
    * --------------------------------------------------------------------------
    * 4. Priority Scheduling with Aging
@@ -301,6 +323,34 @@ describe("CPU Scheduling Engine", () => {
     expect(p2.CompletionTime).toBe(3);
     expect(p1.CompletionTime).toBe(7);
     expect(p3.CompletionTime).toBe(9);
+  });
+
+  it("visibly changes execution order when aging elevates a waiting process past a later arrival with better initial priority", () => {
+    // P1: Arrival 0, Burst 6, Priority 1 (runs [0, 6))
+    // P2: Arrival 0, Burst 2, Priority 5 (worse initial priority)
+    // P3: Arrival 5, Burst 2, Priority 4 (better initial priority than P2)
+    // AgingInterval = 2.
+    // Without aging: at t=6, P3 (prio 4) would beat P2 (prio 5), so P3 would run before P2.
+    // With aging = 2:
+    // P2 waits in Ready at t=0,1 (ages to 4 at t=2), t=2,3 (ages to 3 at t=4), t=4,5 (ages to 2 at t=6).
+    // At t=6: P2 aged priority is 2. P3 arrived at t=5 with priority 4 (only waited 1 tick, no aging yet).
+    // P2 is chosen over P3 (2 < 4)!
+    // P2 runs [6, 8), P3 runs [8, 10).
+    const processes: Process[] = [
+      { ProcessID: "P1", ArrivalTime: 0, BurstTime: 6, Priority: 1 },
+      { ProcessID: "P2", ArrivalTime: 0, BurstTime: 2, Priority: 5 },
+      { ProcessID: "P3", ArrivalTime: 5, BurstTime: 2, Priority: 4 },
+    ];
+    const res = simulate(processes, "PRIORITY", { agingInterval: 2 });
+    expect(res.success).toBe(true);
+    if (!res.success) return;
+    expect(res.segments).toEqual([
+      { processId: "P1", start: 0, end: 6 },
+      { processId: "P2", start: 6, end: 8 },
+      { processId: "P3", start: 8, end: 10 },
+    ]);
+    expect(res.perProcessMetrics.find((m) => m.ProcessID === "P2")!.CompletionTime).toBe(8);
+    expect(res.perProcessMetrics.find((m) => m.ProcessID === "P3")!.CompletionTime).toBe(10);
   });
 
   /*

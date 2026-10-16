@@ -81,6 +81,8 @@ export function simulate(
 
   while (terminatedCount < totalProcesses && currentTick < maxSimulationTicks) {
     // 1. Admit arriving processes at currentTick
+    // Rule: Arriving processes are admitted into the ready queue (sorted by breakTie)
+    // before an expiring quantum process is appended to the back of the queue.
     const arriving = pcbs
       .filter((p) => p.State === "New" && p.ArrivalTime === currentTick)
       .sort(breakTie);
@@ -96,7 +98,8 @@ export function simulate(
     let executingPCB: PCB | null = null;
 
     if (algorithm === "ROUND_ROBIN") {
-      // Check quantum expiry for previously running job
+      // Check quantum expiry for previously running job:
+      // If quantum expired at currentTick, re-queue behind newly arrived processes admitted above.
       if (rrRunningPCB !== null && rrQuantumTicks === quantum) {
         rrRunningPCB.State = "Ready";
         rrReadyQueue.push(rrRunningPCB);

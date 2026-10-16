@@ -23,7 +23,7 @@
 - Tie-breaking everywhere: earliest ArrivalTime, then lowest ProcessID.
 - Preemptive SJF = Shortest Remaining Time First (SRTF). A newly arriving
   shorter job preempts the running one.
-- Round Robin uses a fixed user-defined quantum.
+- Round Robin uses a fixed user-defined quantum. At tick t, newly arriving processes are admitted into the ready queue before an expiring running process is re-queued at the back.
 - Priority scheduling applies aging to reduce starvation.
 - Process states: New, Ready, Running, Waiting, Terminated. Waiting is used
   only if an I/O event exists; otherwise it is never entered.
