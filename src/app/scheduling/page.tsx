@@ -300,6 +300,8 @@ export default function SchedulingPage() {
           isSimulationRun={simulation !== null}
           speed={speed}
           isReducedMotion={isReducedMotion}
+          perProcessMetrics={simulation?.perProcessMetrics ?? []}
+          isCompleted={isCompleted}
         />
 
         {/* Transport Bar */}

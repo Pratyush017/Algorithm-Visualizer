@@ -30,7 +30,7 @@ export function TransportBar({
   onSpeedChange,
 }: TransportBarProps) {
   const canStepBack = isReady && currentStep > 0;
-  const canStepForward = isReady && currentStep < maxStep;
+  const canStepForward = isReady && (maxStep === 0 || currentStep < maxStep);
 
   return (
     <div
@@ -113,6 +113,7 @@ export function TransportBar({
         </span>
         <div className="relative w-full flex items-center">
           <input
+            id="scrubber"
             type="range"
             min={0}
             max={Math.max(1, maxStep)}

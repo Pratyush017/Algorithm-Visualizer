@@ -20,7 +20,10 @@ export function MetricsRow({
       {/* Throughput */}
       <div className="border border-hairline bg-surface p-4 flex flex-col justify-between">
         <div className="text-[14px] font-medium text-ink-muted">Throughput</div>
-        <div className="text-[20px] font-semibold text-ink mt-2 tabular-nums">
+        <div
+          id="metric-throughput"
+          className="text-[20px] font-semibold text-ink mt-2 tabular-nums"
+        >
           {isCompleted ? `${formatMetric(throughput)} proc/tick` : "—"}
         </div>
       </div>
@@ -28,7 +31,10 @@ export function MetricsRow({
       {/* Avg. waiting time */}
       <div className="border border-hairline bg-surface p-4 flex flex-col justify-between">
         <div className="text-[14px] font-medium text-ink-muted">Avg. waiting time</div>
-        <div className="text-[20px] font-semibold text-ink mt-2 tabular-nums">
+        <div
+          id="metric-avg-waiting-time"
+          className="text-[20px] font-semibold text-ink mt-2 tabular-nums"
+        >
           {isCompleted ? `${formatMetric(averageWaitingTime)} ticks` : "—"}
         </div>
       </div>
@@ -36,7 +42,10 @@ export function MetricsRow({
       {/* Avg. turnaround time */}
       <div className="border border-hairline bg-surface p-4 flex flex-col justify-between">
         <div className="text-[14px] font-medium text-ink-muted">Avg. turnaround time</div>
-        <div className="text-[20px] font-semibold text-ink mt-2 tabular-nums">
+        <div
+          id="metric-avg-turnaround-time"
+          className="text-[20px] font-semibold text-ink mt-2 tabular-nums"
+        >
           {isCompleted ? `${formatMetric(averageTurnaroundTime)} ticks` : "—"}
         </div>
       </div>
