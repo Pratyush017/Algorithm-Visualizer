@@ -115,7 +115,7 @@ export function Canvas({
 
   // Animation durations
   const playheadDuration = isReducedMotion ? 0 : getScaledDurationMs(120, speed);
-  const elementDuration = isReducedMotion ? 0 : getScaledDurationMs(300, speed);
+  const elementDuration = isReducedMotion ? 0 : getScaledDurationMs(270, speed);
 
   // 8 Ready Queue Slots
   const queueSlots = useMemo(() => {
