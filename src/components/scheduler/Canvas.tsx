@@ -60,12 +60,23 @@ function CpuSlotProcess({
   }, [runningProcessId, duration, isReducedMotion]);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+    <div
+      id="cpu-process-slot"
+      role="region"
+      aria-label={runningProcessId ? `Running: ${runningProcessId}` : "CPU Idle"}
+      className="relative w-full h-full flex items-center justify-center overflow-hidden"
+    >
       {items.map((item) => {
         const isExiting = item.status === "exiting";
         return (
           <span
             key={item.key}
+            aria-hidden={isExiting ? "true" : "false"}
+            onAnimationEnd={() => {
+              if (isExiting) {
+                setItems((prev) => prev.filter((it) => it.key !== item.key));
+              }
+            }}
             className={`absolute text-[16px] font-semibold tabular-nums ${
               item.id ? "text-accent" : "text-ink-muted"
             }`}
